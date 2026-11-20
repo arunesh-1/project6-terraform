@@ -1,0 +1,19 @@
+sha256:62038367bd3f18116a5d84dc16328fb179f7a4998a56bd8bd6c38d515e6d209f
+sha256:2c4a073a7c37423b10ccb809b67c97c0662412548ca2b1eb6e935549a31d9630
+Project 10: actual DNS and HTTP test output
+
+$ nslookup -type=A -port=1053 app.training.test 172.30.10.10
+Server:		172.30.10.10
+Address:	172.30.10.10#1053
+
+Name:	app.training.test
+Address: 172.30.10.20
+
+$ curl --resolve app.training.test:8000:172.30.10.20 http://app.training.test:8000/
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Project 10 DNS Lab</title></head>
+<body><h1>Project 10: Internal DNS</h1><p>Web app reached using app.training.test.</p></body>
+</html>
+
+PASS: DNS A record verified; HTTP hostname access succeeds using the DNS-returned address.
