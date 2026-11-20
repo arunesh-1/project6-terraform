@@ -1,6 +1,6 @@
 # Project 6: Version Control Infrastructure
 
-[![Terraform validation](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml/badge.svg)](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml)
+[![Terraform validation](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml/badge.svg?branch=project7-ci)](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml?query=branch%3Aproject7-ci)
 
 This cloud-free Terraform demo tracks a small infrastructure configuration in Git. It uses Terraform's built-in `terraform_data` resource to record a server name and environment in local state. It does **not** create a server or any cloud resources, require cloud credentials, or use an external provider.
 
