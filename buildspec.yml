@@ -1,0 +1,24 @@
+version: 0.2
+
+env:
+  variables:
+    IMAGE_REPO_NAME: project13-app
+    IMAGE_TAG: latest
+
+phases:
+  pre_build:
+    commands:
+      - |
+        set -eu
+        ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+        REGISTRY="${ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+        aws ecr get-login-password --region "$AWS_DEFAULT_REGION" | docker login --username AWS --password-stdin "$REGISTRY"
+        printf '%s' "$REGISTRY" > /tmp/project13-registry
+  build:
+    commands:
+      - |
+        set -eu
+        REGISTRY=$(cat /tmp/project13-registry)
+        docker build -t "${IMAGE_REPO_NAME}:${IMAGE_TAG}" .
+        docker tag "${IMAGE_REPO_NAME}:${IMAGE_TAG}" "${REGISTRY}/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        docker push "${REGISTRY}/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
