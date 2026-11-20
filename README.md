@@ -1,6 +1,6 @@
 # Project 6: Version Control Infrastructure
 
-[![Terraform validation](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml/badge.svg?branch=project7-ci)](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml?query=branch%3Aproject7-ci)
+[![Terraform validation](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml/badge.svg)](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml)
 
 This cloud-free Terraform demo tracks a small infrastructure configuration in Git. It uses Terraform's built-in `terraform_data` resource to record a server name and environment in local state. It does **not** create a server or any cloud resources, require cloud credentials, or use an external provider.
 
@@ -19,3 +19,9 @@ terraform output
 Confirm the apply when prompted. Edit `server_name` or `environment` in `terraform.tfvars`, then run `terraform plan` to see the proposed update before applying it. Run `terraform destroy` to remove the demo resource from local state.
 
 Terraform state and working files are excluded from Git. Local state is suitable for this demo only; real infrastructure projects should use a secure shared backend with locking and avoid committing secrets.
+
+## CI evidence
+
+The [Terraform validation workflow](https://github.com/arunesh-1/project6-terraform/actions/workflows/terraform-validation.yml) runs `terraform fmt -check -recursive`, `terraform init -backend=false`, and `terraform validate` on every push. The screenshot below summarizes a successful GitHub Actions run.
+
+![Successful Terraform validation pipeline](pipeline-summary.png)
